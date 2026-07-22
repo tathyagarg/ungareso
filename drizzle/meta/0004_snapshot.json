@@ -1,0 +1,155 @@
+{
+  "id": "627a7571-bf1e-4a10-b8df-b8f562ac32a8",
+  "prevId": "0d6f14cd-448e-4895-89a6-c3237c5f00d3",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.reso": {
+      "name": "reso",
+      "schema": "",
+      "columns": {
+        "undl_id": {
+          "name": "undl_id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "session": {
+          "name": "session",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "voted": {
+          "name": "voted",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": true
+        },
+        "special": {
+          "name": "special",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": false
+        },
+        "emergency": {
+          "name": "emergency",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": false
+        },
+        "symbol": {
+          "name": "symbol",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "drafts": {
+          "name": "drafts",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "title": {
+          "name": "title",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "agenda": {
+          "name": "agenda",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "date": {
+          "name": "date",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.votes": {
+      "name": "votes",
+      "schema": "",
+      "columns": {
+        "undl_id": {
+          "name": "undl_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "session": {
+          "name": "session",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "member_code": {
+          "name": "member_code",
+          "type": "char(3)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "vote": {
+          "name": "vote",
+          "type": "char",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "votes_undl_id_reso_undl_id_fk": {
+          "name": "votes_undl_id_reso_undl_id_fk",
+          "tableFrom": "votes",
+          "tableTo": "reso",
+          "columnsFrom": [
+            "undl_id"
+          ],
+          "columnsTo": [
+            "undl_id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "votes_undl_id_session_member_code_pk": {
+          "name": "votes_undl_id_session_member_code_pk",
+          "columns": [
+            "undl_id",
+            "session",
+            "member_code"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "sequences": {},
+  "roles": {},
+  "policies": {},
+  "views": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}

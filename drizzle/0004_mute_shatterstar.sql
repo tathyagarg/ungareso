@@ -1,0 +1,2 @@
+ALTER TABLE "votes" ALTER COLUMN "undl_id" SET NOT NULL;--> statement-breakpoint
+ALTER TABLE "votes" ADD CONSTRAINT "votes_undl_id_reso_undl_id_fk" FOREIGN KEY ("undl_id") REFERENCES "public"."reso"("undl_id") ON DELETE cascade ON UPDATE no action;
