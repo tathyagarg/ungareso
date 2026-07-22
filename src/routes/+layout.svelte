@@ -38,6 +38,8 @@
 
 <Nav />
 
-{@render children()}
+<div class="relative flex flex-col min-h-screen">
+  {@render children()}
 
-<Footer />
+  <Footer />
+</div>
