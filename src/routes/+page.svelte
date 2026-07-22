@@ -272,11 +272,4 @@
       </div>
     {/if}
   </main>
-
-  <footer class="border-t border-black/25 py-8">
-    <p class="mx-auto max-w-5xl px-6 font-mono text-xs text-stone-500">
-      Sourced from the UN Digital Library. Not affiliated with the United
-      Nations.
-    </p>
-  </footer>
 </div>
