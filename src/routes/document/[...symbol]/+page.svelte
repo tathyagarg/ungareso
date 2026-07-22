@@ -137,7 +137,9 @@
     </h2>
 
     {#if res?.voted}
-      <div class="flex flex-wrap gap-2">
+      <div
+        class="flex flex-wrap gap-2 bg-paper p-4 rounded border border-black/25"
+      >
         {#each res?.votes as vote}
           <div
             class="items-center gap-4 p-2 w-fit rounded border border-transparent hover:border-black/25 duration-300"

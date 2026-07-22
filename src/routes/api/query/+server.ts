@@ -2,20 +2,8 @@ import { db } from "$lib/server/db";
 import { reso } from "$lib/server/db/schema";
 import { ilike, or } from "drizzle-orm";
 
-export const GET = async ({ url }: { url: any }) => {
-  console.log("GET request received with query parameters:", url.searchParams.toString());
-  const query = url.searchParams.get("q");
-
-  if (!query) {
-    return new Response(JSON.stringify({ error: "Missing query parameter 'q'" }), {
-      status: 400,
-      headers: {
-        "Content-Type": "application/json"
-      }
-    });
-  }
-
-  const res = await db.query.reso.findMany({
+export const getResolutions = async (query: string) => {
+  return await db.query.reso.findMany({
     where: or(
       ilike(reso.title, `%${query}%`),
       ilike(reso.symbol, `%${query}%`)
@@ -41,6 +29,23 @@ export const GET = async ({ url }: { url: any }) => {
       total_absent: r.votes.filter((v) => v.vote === "X").length,
     }));
   });
+}
+
+
+export const GET = async ({ url }: { url: any }) => {
+  console.log("GET request received with query parameters:", url.searchParams.toString());
+  const query = url.searchParams.get("q");
+
+  if (!query) {
+    return new Response(JSON.stringify({ error: "Missing query parameter 'q'" }), {
+      status: 400,
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });
+  }
+
+  const res = await getResolutions(query);
 
   return new Response(JSON.stringify({ res }), {
     status: 200,
